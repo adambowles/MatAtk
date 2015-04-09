@@ -129,11 +129,11 @@ end
   TODO description
 %}
 function return_val = m2(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m2(get_quadrant_1(img));
+  q2_measure = calculate_m2(get_quadrant_2(img));
+  q3_measure = calculate_m2(get_quadrant_3(img));
+  q4_measure = calculate_m2(get_quadrant_4(img));
+  q5_measure = calculate_m2(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -151,11 +151,11 @@ end
   TODO description
 %}
 function return_val = m3(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m3(get_quadrant_1(img));
+  q2_measure = calculate_m3(get_quadrant_2(img));
+  q3_measure = calculate_m3(get_quadrant_3(img));
+  q4_measure = calculate_m3(get_quadrant_4(img));
+  q5_measure = calculate_m3(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -173,11 +173,11 @@ end
   TODO description
 %}
 function return_val = m4(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m4(get_quadrant_1(img));
+  q2_measure = calculate_m4(get_quadrant_2(img));
+  q3_measure = calculate_m4(get_quadrant_3(img));
+  q4_measure = calculate_m4(get_quadrant_4(img));
+  q5_measure = calculate_m4(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -195,11 +195,11 @@ end
   TODO description
 %}
 function return_val = m5(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m5(get_quadrant_1(img));
+  q2_measure = calculate_m5(get_quadrant_2(img));
+  q3_measure = calculate_m5(get_quadrant_3(img));
+  q4_measure = calculate_m5(get_quadrant_4(img));
+  q5_measure = calculate_m5(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -217,11 +217,11 @@ end
   TODO description
 %}
 function return_val = m6(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m6(get_quadrant_1(img));
+  q2_measure = calculate_m6(get_quadrant_2(img));
+  q3_measure = calculate_m6(get_quadrant_3(img));
+  q4_measure = calculate_m6(get_quadrant_4(img));
+  q5_measure = calculate_m6(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -239,11 +239,11 @@ end
   TODO description
 %}
 function return_val = m7(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m7(get_quadrant_1(img));
+  q2_measure = calculate_m7(get_quadrant_2(img));
+  q3_measure = calculate_m7(get_quadrant_3(img));
+  q4_measure = calculate_m7(get_quadrant_4(img));
+  q5_measure = calculate_m7(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -261,11 +261,11 @@ end
   TODO description
 %}
 function return_val = m8(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m8(get_quadrant_1(img));
+  q2_measure = calculate_m8(get_quadrant_2(img));
+  q3_measure = calculate_m8(get_quadrant_3(img));
+  q4_measure = calculate_m8(get_quadrant_4(img));
+  q5_measure = calculate_m8(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -283,11 +283,11 @@ end
   TODO description
 %}
 function return_val = m9(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m9(get_quadrant_1(img));
+  q2_measure = calculate_m9(get_quadrant_2(img));
+  q3_measure = calculate_m9(get_quadrant_3(img));
+  q4_measure = calculate_m9(get_quadrant_4(img));
+  q5_measure = calculate_m9(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -305,11 +305,11 @@ end
   TODO description
 %}
 function return_val = m10(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m10(get_quadrant_1(img));
+  q2_measure = calculate_m10(get_quadrant_2(img));
+  q3_measure = calculate_m10(get_quadrant_3(img));
+  q4_measure = calculate_m10(get_quadrant_4(img));
+  q5_measure = calculate_m10(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -327,11 +327,11 @@ end
   TODO description
 %}
 function return_val = m11(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m11(get_quadrant_1(img));
+  q2_measure = calculate_m11(get_quadrant_2(img));
+  q3_measure = calculate_m11(get_quadrant_3(img));
+  q4_measure = calculate_m11(get_quadrant_4(img));
+  q5_measure = calculate_m11(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -349,11 +349,11 @@ end
   TODO description
 %}
 function return_val = m12(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m12(get_quadrant_1(img));
+  q2_measure = calculate_m12(get_quadrant_2(img));
+  q3_measure = calculate_m12(get_quadrant_3(img));
+  q4_measure = calculate_m12(get_quadrant_4(img));
+  q5_measure = calculate_m12(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -371,11 +371,11 @@ end
   TODO description
 %}
 function return_val = m13(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m13(get_quadrant_1(img));
+  q2_measure = calculate_m13(get_quadrant_2(img));
+  q3_measure = calculate_m13(get_quadrant_3(img));
+  q4_measure = calculate_m13(get_quadrant_4(img));
+  q5_measure = calculate_m13(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -393,11 +393,11 @@ end
   TODO description
 %}
 function return_val = m14(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m14(get_quadrant_1(img));
+  q2_measure = calculate_m14(get_quadrant_2(img));
+  q3_measure = calculate_m14(get_quadrant_3(img));
+  q4_measure = calculate_m14(get_quadrant_4(img));
+  q5_measure = calculate_m14(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -415,11 +415,11 @@ end
   TODO description
 %}
 function return_val = m15(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m15(get_quadrant_1(img));
+  q2_measure = calculate_m15(get_quadrant_2(img));
+  q3_measure = calculate_m15(get_quadrant_3(img));
+  q4_measure = calculate_m15(get_quadrant_4(img));
+  q5_measure = calculate_m15(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 
@@ -437,11 +437,11 @@ end
   TODO description
 %}
 function return_val = m16(img)
-  q1_measure = calculate_m1(get_quadrant_1(img));
-  q2_measure = calculate_m1(get_quadrant_2(img));
-  q3_measure = calculate_m1(get_quadrant_3(img));
-  q4_measure = calculate_m1(get_quadrant_4(img));
-  q5_measure = calculate_m1(get_quadrant_5(img));
+  q1_measure = calculate_m16(get_quadrant_1(img));
+  q2_measure = calculate_m16(get_quadrant_2(img));
+  q3_measure = calculate_m16(get_quadrant_3(img));
+  q4_measure = calculate_m16(get_quadrant_4(img));
+  q5_measure = calculate_m16(get_quadrant_5(img));
   return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
 end
 

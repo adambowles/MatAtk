@@ -1,3 +1,3 @@
-function return_val = average(img)
+function return_val = process(img)
   return_val = img;
 end

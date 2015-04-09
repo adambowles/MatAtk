@@ -8,5 +8,5 @@ file_mask = strcat(directory, '.', filetype);
 files = dir(file_mask);
 for file = files'
     img = imread(file.name);
-    % Do some stuff, like process(img);
+    data = process(img);
 end

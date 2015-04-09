@@ -7,10 +7,10 @@ filetype = 'jpg';
 file_mask = strcat(directory, '.', filetype);
 files = dir(file_mask);
 for file = files'
-    img = imread(file.name);
-    data = process(img);
-    %TODO
-    % add data to a new line in a global variable
+  img = imread(file.name);
+  data = process(img);
+  %TODO
+  % add data to a new line in a global variable
 end
 
 %TODO

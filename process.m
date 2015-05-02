@@ -47,7 +47,6 @@ function return_val = process(img)
   
   % Present data in array rather than matrix
   arr_result = reshape(result.', 1, numel(result));
-%   mr=reshape(m.',1,[])
   
   return_val = arr_result;
 end

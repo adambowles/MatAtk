@@ -1,55 +1,55 @@
 function return_val = process(img)
-  result = zeroes(16,5);
+   % 16 separate measures, each applied to the five quadrants
+  result = zeros(14,6);
   
-  % measure 1 (TODO description)
+  % measure 1 (average of red values)
   result(1,:) = m1(img);
   
-  % measure 2 (TODO description)
+  % measure 2 (average of green values)
   result(2,:) = m2(img);
   
-  % measure 3 (TODO description)
+  % measure 3 (average of blue values)
   result(3,:) = m3(img);
   
-  % measure 4 (TODO description)
+  % measure 4 (average of greyscale values)
   result(4,:) = m4(img);
   
-  % measure 5 (TODO description)
+  % measure 5 (cell counting)
   result(5,:) = m5(img);
   
-  % measure 6 (TODO description)
+  % measure 6 (canny edge pixels vs total pixels)
   result(6,:) = m6(img);
   
-  % measure 7 (TODO description)
+  % measure 7 (verticality)
   result(7,:) = m7(img);
   
-  % measure 8 (TODO description)
+  % measure 8 (horizontality)
   result(8,:) = m8(img);
   
-  % measure 9 (TODO description)
+  % measure 9 (number of unique colours)
   result(9,:) = m9(img);
   
-  % measure 10 (TODO description)
+  % measure 10 (number of unqique reds)
   result(10,:) = m10(img);
   
-  % measure 11 (TODO description)
+  % measure 11 (number of unique greens)
   result(11,:) = m11(img);
   
-  % measure 12 (TODO description)
+  % measure 12 (number of unique blues)
   result(12,:) = m12(img);
   
-  % measure 13 (TODO description)
+  % measure 13 (max variance from mean)
   result(13,:) = m13(img);
   
-  % measure 14 (TODO description)
+  % measure 14 (most frequently occurring colours
+  % (discretised / reduced bit depth))
   result(14,:) = m14(img);
   
-  % measure 15 (TODO description)
-  result(15,:) = m15(img);
+  % Present data in array rather than matrix
+  arr_result = reshape(result.', 1, numel(result));
+%   mr=reshape(m.',1,[])
   
-  % measure 16 (TODO description)
-  result(16,:) = m16(img);
-  
-  return_val = result;
+  return_val = arr_result;
 end
 
 %{
@@ -57,8 +57,8 @@ end
   (top left)
 %}
 function return_val = get_quadrant_1(img)
-  [height, width, dimension] = size(img);
-  img = imcrop(0, 0, width/2, height/2);
+  [height, width, ~] = size(img);
+  img = imcrop(img, [0 0 width/2 height/2]);
   return_val = img;
 end
 
@@ -67,8 +67,8 @@ end
   (top right)
 %}
 function return_val = get_quadrant_2(img)
-  [height, width, dimension] = size(img);
-  img = imcrop(width/2, 0, width/2, height/2);
+  [height, width, ~] = size(img);
+  img = imcrop(img, [width/2 0 width/2 height/2]);
   return_val = img;
 end
 
@@ -77,8 +77,8 @@ end
   (bottom left)
 %}
 function return_val = get_quadrant_3(img)
-  [height, width, dimension] = size(img);
-  img = imcrop(0, height/2, width/2, height/2);
+  [height, width, ~] = size(img);
+  img = imcrop(img, [0 height/2 width/2 height/2]);
   return_val = img;
 end
 
@@ -87,8 +87,8 @@ end
   (bottom right)
 %}
 function return_val = get_quadrant_4(img)
-  [height, width, dimension] = size(img);
-  img = imcrop(width/2, height/2, width/2, height/2);
+  [height, width, ~] = size(img);
+  img = imcrop(img, [width/2 height/2 width/2 height/2]);
   return_val = img;
 end
 
@@ -97,14 +97,13 @@ end
   (centre)
 %}
 function return_val = get_quadrant_5(img)
-  [height, width, dimension] = size(img);
-  img = imcrop(width/4, height/4, width/2, height/2);
+  [height, width, ~] = size(img);
+  img = imcrop(img, [width/4 height/4 width/2 height/2]);
   return_val = img;
 end
 
 %{
   Measure 1 subdivision and delegation
-  TODO description
 %}
 function return_val = m1(img)
   q1_measure = calculate_m1(get_quadrant_1(img));
@@ -112,21 +111,23 @@ function return_val = m1(img)
   q3_measure = calculate_m1(get_quadrant_3(img));
   q4_measure = calculate_m1(get_quadrant_4(img));
   q5_measure = calculate_m1(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m1(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 1 processing
-  TODO description
+  Overall red-ness
+  Average value of all red values from all pixels scaled to 0-100 range
 %}
 function return_val = calculate_m1(img)
-  %TODO process
-  return_val = 1;
+  reds = img(:,:,1);
+  average_red = mean2(reds);
+  return_val = average_red / 2.55;
 end
 
 %{
   Measure 2
-  TODO description
 %}
 function return_val = m2(img)
   q1_measure = calculate_m2(get_quadrant_1(img));
@@ -134,21 +135,23 @@ function return_val = m2(img)
   q3_measure = calculate_m2(get_quadrant_3(img));
   q4_measure = calculate_m2(get_quadrant_4(img));
   q5_measure = calculate_m2(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m2(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 2 processing
-  TODO description
+  Overall green-ness
+  Average value of all green values from all pixels scaled to 0-100 range
 %}
 function return_val = calculate_m2(img)
-  %TODO process
-  return_val = 1;
+  greens = img(:,:,2);
+  average_green = mean2(greens);
+  return_val = average_green / 2.55;
 end
 
 %{
   Measure 3
-  TODO description
 %}
 function return_val = m3(img)
   q1_measure = calculate_m3(get_quadrant_1(img));
@@ -156,21 +159,23 @@ function return_val = m3(img)
   q3_measure = calculate_m3(get_quadrant_3(img));
   q4_measure = calculate_m3(get_quadrant_4(img));
   q5_measure = calculate_m3(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m3(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 3 processing
-  TODO description
+  Overall blue-ness
+  Average value of all blue values from all pixels scaled to 0-100 range
 %}
 function return_val = calculate_m3(img)
-  %TODO process
-  return_val = 1;
+  blues = img(:,:,3);
+  average_blue = mean2(blues);
+  return_val = average_blue / 2.55;
 end
 
 %{
   Measure 4
-  TODO description
 %}
 function return_val = m4(img)
   q1_measure = calculate_m4(get_quadrant_1(img));
@@ -178,21 +183,36 @@ function return_val = m4(img)
   q3_measure = calculate_m4(get_quadrant_3(img));
   q4_measure = calculate_m4(get_quadrant_4(img));
   q5_measure = calculate_m4(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m4(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 4 processing
-  TODO description
+  Similar to coloured averages, this measure is greyscale brightness
+  weighted as:
+  red * 0.2989
+  green * 0.5870
+  blue * 0.1140
 %}
 function return_val = calculate_m4(img)
-  %TODO process
-  return_val = 1;
+  reds = img(:,:,1);
+  reds = reds .* 0.2989;
+  
+  greens = img(:,:,2);
+  greens = greens .* 0.5870;
+  
+  blues = img(:,:,3);
+  blues = blues .* 0.1140;
+  
+  combined = reds + greens + blues;
+  
+  average = mean2(combined);
+  return_val = average;
 end
 
 %{
   Measure 5
-  TODO description
 %}
 function return_val = m5(img)
   q1_measure = calculate_m5(get_quadrant_1(img));
@@ -200,21 +220,39 @@ function return_val = m5(img)
   q3_measure = calculate_m5(get_quadrant_3(img));
   q4_measure = calculate_m5(get_quadrant_4(img));
   q5_measure = calculate_m5(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m5(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 5 processing
-  TODO description
+  Segments
+  http://blog.pedro.si/2014/04/basic-cell-segmentation-in-matlab.html
 %}
 function return_val = calculate_m5(img)
-  %TODO process
-  return_val = 1;
+  I = rgb2gray(img);
+  I = adapthisteq(I);
+  I = imclearborder(I);
+  I = wiener2(I, [5 5]);
+  bw = im2bw(I, graythresh(I));
+  bw2 = imfill(bw, 'holes');
+  bw3 = imopen(bw2, strel('disk',2));
+  bw4 = bwareaopen(bw3, 100);
+  maxs = imextendedmax(I,  5);
+  maxs = imclose(maxs, strel('disk',3));
+  maxs = imfill(maxs, 'holes');
+  maxs = bwareaopen(maxs, 2);
+  Jc = imcomplement(I);
+  I_mod = imimposemin(Jc, ~bw4 | maxs);
+  L = watershed(I_mod);
+
+  [~, num] = bwlabel(L);
+  
+  return_val = num;
 end
 
 %{
   Measure 6
-  TODO description
 %}
 function return_val = m6(img)
   q1_measure = calculate_m6(get_quadrant_1(img));
@@ -222,21 +260,28 @@ function return_val = m6(img)
   q3_measure = calculate_m6(get_quadrant_3(img));
   q4_measure = calculate_m6(get_quadrant_4(img));
   q5_measure = calculate_m6(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m6(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 6 processing
-  TODO description
+  Canny edge detection
+  returns number of edge pixels as percentage of all pixels using canny
+  edge detector
 %}
 function return_val = calculate_m6(img)
-  %TODO process
-  return_val = 1;
+  img = rgb2gray(img);
+  canny = edge(img, 'Canny');
+  [rows, columns, ~] = size(img);
+  total_pixels = rows * columns;
+  edge_pixels = nnz(canny);
+  edge_ratio = edge_pixels / total_pixels;
+  return_val = edge_ratio;
 end
 
 %{
   Measure 7
-  TODO description
 %}
 function return_val = m7(img)
   q1_measure = calculate_m7(get_quadrant_1(img));
@@ -244,21 +289,34 @@ function return_val = m7(img)
   q3_measure = calculate_m7(get_quadrant_3(img));
   q4_measure = calculate_m7(get_quadrant_4(img));
   q5_measure = calculate_m7(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m7(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 7 processing
-  TODO description
+  vertical sobel brightness comapred to bi-directional
 %}
 function return_val = calculate_m7(img)
-  %TODO process
-  return_val = 1;
+  img = rgb2gray(img);
+  
+  vertical_gradient = imfilter(img, [-1 0 1;
+                                     -2 0 2;
+                                     -1 0 1;]);
+                                 
+  horizontal_gradient = imfilter(img, [ 1  2  1;
+                                        0  0  0;
+                                       -1 -2 -1;]);
+              
+  grad_intensity = horizontal_gradient + vertical_gradient;
+  
+  verticality =  mean2(vertical_gradient)/mean2(grad_intensity);
+  
+  return_val = verticality;
 end
 
 %{
   Measure 8
-  TODO description
 %}
 function return_val = m8(img)
   q1_measure = calculate_m8(get_quadrant_1(img));
@@ -266,21 +324,34 @@ function return_val = m8(img)
   q3_measure = calculate_m8(get_quadrant_3(img));
   q4_measure = calculate_m8(get_quadrant_4(img));
   q5_measure = calculate_m8(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m8(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 8 processing
-  TODO description
+  horizontal sobel brightness comapred to bi-directional
 %}
 function return_val = calculate_m8(img)
-  %TODO process
-  return_val = 1;
+  img = rgb2gray(img);
+  
+  vertical_gradient = imfilter(img, [-1 0 1;
+                                     -2 0 2;
+                                     -1 0 1;]);
+                                 
+  horizontal_gradient = imfilter(img, [ 1  2  1;
+                                        0  0  0;
+                                       -1 -2 -1;]);
+              
+  grad_intensity = horizontal_gradient + vertical_gradient;
+  
+  horizontality =  mean2(horizontal_gradient)/mean2(grad_intensity);
+  
+  return_val = horizontality;
 end
 
 %{
   Measure 9
-  TODO description
 %}
 function return_val = m9(img)
   q1_measure = calculate_m9(get_quadrant_1(img));
@@ -288,21 +359,23 @@ function return_val = m9(img)
   q3_measure = calculate_m9(get_quadrant_3(img));
   q4_measure = calculate_m9(get_quadrant_4(img));
   q5_measure = calculate_m9(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m9(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 9 processing
-  TODO description
+  Number of distinct different colours
 %}
 function return_val = calculate_m9(img)
-  %TODO process
-  return_val = 1;
+  dec_img = (double(img(:,:,1)) .* (256 * 256)) + (double(img(:,:,2)) .* 256) + double(img(:,:,3));
+  distinct_colours = unique(dec_img);
+  distinct_colours_count = size(distinct_colours, 1);
+  return_val = distinct_colours_count;
 end
 
 %{
   Measure 10
-  TODO description
 %}
 function return_val = m10(img)
   q1_measure = calculate_m10(get_quadrant_1(img));
@@ -310,21 +383,23 @@ function return_val = m10(img)
   q3_measure = calculate_m10(get_quadrant_3(img));
   q4_measure = calculate_m10(get_quadrant_4(img));
   q5_measure = calculate_m10(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m10(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 10 processing
-  TODO description
+  Number of distinct different reds
 %}
 function return_val = calculate_m10(img)
-  %TODO process
-  return_val = 1;
+  reds = double(img(:,:,1));
+  distinct_colours = unique(reds);
+  distinct_colours_count = size(distinct_colours, 1);
+  return_val = distinct_colours_count;
 end
 
 %{
   Measure 11
-  TODO description
 %}
 function return_val = m11(img)
   q1_measure = calculate_m11(get_quadrant_1(img));
@@ -332,21 +407,23 @@ function return_val = m11(img)
   q3_measure = calculate_m11(get_quadrant_3(img));
   q4_measure = calculate_m11(get_quadrant_4(img));
   q5_measure = calculate_m11(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m11(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 11 processing
-  TODO description
+  Number of distinct different greens
 %}
 function return_val = calculate_m11(img)
-  %TODO process
-  return_val = 1;
+  greens = double(img(:,:,2));
+  distinct_colours = unique(greens);
+  distinct_colours_count = size(distinct_colours, 1);
+  return_val = distinct_colours_count;
 end
 
 %{
   Measure 12
-  TODO description
 %}
 function return_val = m12(img)
   q1_measure = calculate_m12(get_quadrant_1(img));
@@ -354,21 +431,23 @@ function return_val = m12(img)
   q3_measure = calculate_m12(get_quadrant_3(img));
   q4_measure = calculate_m12(get_quadrant_4(img));
   q5_measure = calculate_m12(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m12(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 12 processing
-  TODO description
+  Number of distinct different blues
 %}
 function return_val = calculate_m12(img)
-  %TODO process
-  return_val = 1;
+  blues = double(img(:,:,3));
+  distinct_colours = unique(blues);
+  distinct_colours_count = size(distinct_colours, 1);
+  return_val = distinct_colours_count;
 end
 
 %{
   Measure 13
-  TODO description
 %}
 function return_val = m13(img)
   q1_measure = calculate_m13(get_quadrant_1(img));
@@ -376,21 +455,59 @@ function return_val = m13(img)
   q3_measure = calculate_m13(get_quadrant_3(img));
   q4_measure = calculate_m13(get_quadrant_4(img));
   q5_measure = calculate_m13(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m13(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 13 processing
-  TODO description
+  Max variance from mean colour
+  Calculates vector magnitude in 3D (RGB) space
 %}
 function return_val = calculate_m13(img)
-  %TODO process
-  return_val = 1;
+  reds = img(:,:,1);
+  average_red = mean2(reds);
+  max_red = max(max(reds));
+  min_red = min(min(reds));
+  red_pos_variance = max_red - average_red;
+  red_neg_variance = average_red - min_red;
+  if(red_pos_variance >= red_neg_variance)
+      red_variance = double(red_pos_variance);
+  else
+      red_variance = double(red_neg_variance);
+  end
+  
+  greens = img(:,:,2);
+  average_green = mean2(greens);
+  max_green = max(max(greens));
+  min_green = min(min(greens));
+  green_pos_variance = max_green - average_green;
+  green_neg_variance = average_green - min_green;
+  if(green_pos_variance >= green_neg_variance)
+      green_variance = double(green_pos_variance);
+  else
+      green_variance = double(green_neg_variance);
+  end
+  
+  blues = img(:,:,3);
+  average_blue = mean2(blues);
+  max_blue = max(max(blues));
+  min_blue = min(min(blues));
+  blue_pos_variance = max_blue - average_blue;
+  blue_neg_variance = average_blue - min_blue;
+  if(blue_pos_variance >= blue_neg_variance)
+      blue_variance = double(blue_pos_variance);
+  else
+      blue_variance = double(blue_neg_variance);
+  end
+  
+  variance_magnitude = sqrt(double((red_variance^2) + (green_variance^2) + (blue_variance^2)));
+  
+  return_val = variance_magnitude;
 end
 
 %{
   Measure 14
-  TODO description
 %}
 function return_val = m14(img)
   q1_measure = calculate_m14(get_quadrant_1(img));
@@ -398,58 +515,37 @@ function return_val = m14(img)
   q3_measure = calculate_m14(get_quadrant_3(img));
   q4_measure = calculate_m14(get_quadrant_4(img));
   q5_measure = calculate_m14(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
+  total_measure = calculate_m14(img);
+  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure; total_measure];
 end
 
 %{
   Measure 14 processing
-  TODO description
+  Most frequently occurring colour
+  (discretised / reduced bit depth)
 %}
 function return_val = calculate_m14(img)
-  %TODO process
-  return_val = 1;
-end
-
-%{
-  Measure 15
-  TODO description
-%}
-function return_val = m15(img)
-  q1_measure = calculate_m15(get_quadrant_1(img));
-  q2_measure = calculate_m15(get_quadrant_2(img));
-  q3_measure = calculate_m15(get_quadrant_3(img));
-  q4_measure = calculate_m15(get_quadrant_4(img));
-  q5_measure = calculate_m15(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
-end
-
-%{
-  Measure 15 processing
-  TODO description
-%}
-function return_val = calculate_m15(img)
-  %TODO process
-  return_val = 1;
-end
-
-%{
-  Measure 16
-  TODO description
-%}
-function return_val = m16(img)
-  q1_measure = calculate_m16(get_quadrant_1(img));
-  q2_measure = calculate_m16(get_quadrant_2(img));
-  q3_measure = calculate_m16(get_quadrant_3(img));
-  q4_measure = calculate_m16(get_quadrant_4(img));
-  q5_measure = calculate_m16(get_quadrant_5(img));
-  return_val = [q1_measure; q2_measure; q3_measure; q4_measure; q5_measure];
-end
-
-%{
-  Measure 16 processing
-  TODO description
-%}
-function return_val = calculate_m16(img)
-  %TODO process
-  return_val = 1;
+  % Discretise colours per dimension
+  colours = 32; % Set this for colours per dimension
+  colour_factor = 256/colours;
+  
+  reds = img(:,:,1);
+  reds = round(reds ./ colour_factor);
+  
+  greens = img(:,:,2);
+  greens = round(greens ./ colour_factor);
+  
+  blues = img(:,:,3);
+  blues = round(blues ./ colour_factor);
+  
+  % rescale back to 0-255
+  img(:,:,1) = reds .* colour_factor;
+  img(:,:,2) = greens .* colour_factor;
+  img(:,:,3) = blues .* colour_factor;
+  
+  dec_img = (double(img(:,:,1)) .* (256 * 256)) + (double(img(:,:,2)) .* 256) + double(img(:,:,3));
+  
+  mode_val = mode(mode(dec_img));
+  
+  return_val = mode_val;
 end

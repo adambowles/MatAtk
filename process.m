@@ -1,54 +1,158 @@
 function return_val = process(img)
-   % 16 separate measures, each applied to the five quadrants
-  result = zeros(14,6);
+  % 14 separate measures, each applied to the five quadrants and once on
+  % whole image
+  result = cell(1, 6);
+  result2 = cell(2, 84);
   
   % measure 1 (average of red values)
-  result(1,:) = m1(img);
+  measure = 1;
+  measure_name = 'redness';
+  result = m1(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 2 (average of green values)
-  result(2,:) = m2(img);
+  measure = 2;
+  measure_name = 'greenness';
+  result = m2(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 3 (average of blue values)
-  result(3,:) = m3(img);
+  measure = 3;
+  measure_name = 'blueness';
+  result = m3(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 4 (average of greyscale values)
-  result(4,:) = m4(img);
+  measure = 4;
+  measure_name = 'brightness';
+  result = m4(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 5 (cell counting)
-  result(5,:) = m5(img);
+  measure = 5;
+  measure_name = 'cells';
+  result = m5(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 6 (canny edge pixels vs total pixels)
-  result(6,:) = m6(img);
+  measure = 6;
+  measure_name = 'edges';
+  result = m6(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 7 (verticality)
-  result(7,:) = m7(img);
+  measure = 7;
+  measure_name = 'vertical-edges';
+  result = m7(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 8 (horizontality)
-  result(8,:) = m8(img);
+  measure = 8;
+  measure_name = 'horizontal-edges';
+  result = m8(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 9 (number of unique colours)
-  result(9,:) = m9(img);
+  measure = 9;
+  measure_name = 'distinct-colours';
+  result = m9(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 10 (number of unqique reds)
-  result(10,:) = m10(img);
+  measure = 10;
+  measure_name = 'distinct-reds';
+  result = m10(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 11 (number of unique greens)
-  result(11,:) = m11(img);
+  measure = 11;
+  measure_name = 'distinct-greens';
+  result = m11(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 12 (number of unique blues)
-  result(12,:) = m12(img);
+  measure = 12;
+  measure_name = 'distinct-blues';
+  result = m12(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 13 (max variance from mean)
-  result(13,:) = m13(img);
+  measure = 13;
+  measure_name = 'mean-variance';
+  result = m13(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
   
   % measure 14 (most frequently occurring colours
   % (discretised / reduced bit depth))
+<<<<<<< HEAD
+  measure = 14;
+  measure_name = 'mode-colour';
+  result = m14(img);
+  for i = 1:6
+    i2 = ((measure-1) * 6) + i;
+    result2{1, i2} = [measure_name, '-', num2str(i)];
+    result2{2, i2} = result(i);
+  end
+=======
   result(14,:) = m14(img);
   
   % Present data in array rather than matrix
   arr_result = reshape(result.', 1, numel(result));
+>>>>>>> origin/master
   
-  return_val = arr_result;
+  return_val = result2;
 end
 
 %{

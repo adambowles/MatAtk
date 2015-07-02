@@ -136,7 +136,6 @@ function return_val = process(img)
   
   % measure 14 (most frequently occurring colours
   % (discretised / reduced bit depth))
-<<<<<<< HEAD
   measure = 14;
   measure_name = 'mode-colour';
   result = m14(img);
@@ -145,12 +144,6 @@ function return_val = process(img)
     result2{1, i2} = [measure_name, '-', num2str(i)];
     result2{2, i2} = result(i);
   end
-=======
-  result(14,:) = m14(img);
-  
-  % Present data in array rather than matrix
-  arr_result = reshape(result.', 1, numel(result));
->>>>>>> origin/master
   
   return_val = result2;
 end
